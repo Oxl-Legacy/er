@@ -1,0 +1,67 @@
+১. সাজানো (Sorting) - খুব ইম্পরট্যান্ট!
+ভেক্টরের সংখ্যাগুলো এলোমেলো থাকলে সেটাকে ছোট থেকে বড় বা বড় থেকে ছোট সাজাতে বলতে পারে।
+
+ছোট থেকে বড় (Ascending): sort(v.begin(), v.end());
+
+বড় থেকে ছোট (Descending): sort(v.begin(), v.end(), greater<int>());
+
+উল্টে দেওয়া (Reverse): reverse(v.begin(), v.end());
+
+২. চেক করা (Access & Check)
+সাইজ কত? v.size()
+
+ভেক্টর কি খালি? v.empty() (খালি হলে true, না হলে false রিটার্ন করে)।
+
+প্রথম উপাদান: v.front()
+
+শেষ উপাদান: v.back()
+
+৩. আগে থেকেই সাইজ ঠিক করা (Initialization)
+অনেক সময় লুপ চালানোর আগে ভেক্টরের সাইজ বলে দিতে হয়।
+
+vector<int> v(5, 10); -> এর মানে হলো, ৫টা ঘর তৈরি হবে এবং সবগুলোতে 10 থাকবে। v = {10, 10, 10, 10, 10}
+
+৪. লুপ চালিয়ে ইনপুট নেওয়া (User Input)
+এক্সামে প্রায়ই বলে: "User থেকে N-টা সংখ্যা ইনপুট নিয়ে ভেক্টরে রাখো"। এটা দুইভাবে করা যায়:
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    // 1. Initialization (5 ta ghor, sobai 0)
+    int n = 5;
+    vector<int> v(n); 
+
+    // 2. User Input (Exam e pray-i ase)
+    cout << "Enter 5 numbers: ";
+    for(int i = 0; i < n; i++) {
+        cin >> v[i]; // Direct index access
+    }
+    // Ekhane v jodi {50, 10, 40, 20, 30} hoy...
+
+    // 3. Sorting (Choto theke boro)
+    sort(v.begin(), v.end()); 
+    // Ekhon v hoye gese: {10, 20, 30, 40, 50}
+
+    // 4. Reverse (Ulte dewa)
+    reverse(v.begin(), v.end());
+    // Ekhon v hoye gese: {50, 40, 30, 20, 10}
+
+    // 5. Important Functions
+    cout << "Size: " << v.size() << endl;      // Koita element ache
+    cout << "First Element: " << v.front() << endl; // Prothom ta (50)
+    cout << "Last Element: " << v.back() << endl;   // Sesh er ta (10)
+    
+    // Check if empty
+    if(v.empty()) {
+        cout << "Vector is empty!" << endl;
+    } else {
+        cout << "Vector is not empty." << endl;
+    }
+
+    // Print
+    cout << "Final Vector: ";
+    for(int x : v) cout << x << " ";
+    cout << endl;
+
+    return 0;
+}
