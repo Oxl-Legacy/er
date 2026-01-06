@@ -1,0 +1,84 @@
+সহজ কথায় বুঝিয়ে বলছি, "Akta 2d vector er matrix er shathe Arekta 2d vector er matrix er Multiplication" দিয়ে আসলে কী বোঝানো হয়েছে:
+
+১. এটার মানে কী? (Concept)
+ধরো তোমার কাছে সংখ্যার দুটি বক্স বা ছক আছে। গণিতের ভাষায় এই ছকগুলোকে বলে Matrix। আর C++ প্রোগ্রামিং-এ এই ছকগুলো তৈরি করার জন্য আমরা 2D Vector ব্যবহার করি।
+
+১ম 2D Vector: এটা হলো প্রথম ম্যাট্রিক্স (ধরো নাম A)।
+
+২য় 2D Vector: এটা হলো দ্বিতীয় ম্যাট্রিক্স (ধরো নাম B)।
+
+Multiplication: কোডটি A এবং B এর সংখ্যাগুলোকে গুণ করে নতুন একটি ছক বা ম্যাট্রিক্স (Result) তৈরি করবে।
+
+২. এটা কি একটা কোডেই থাকে?
+হ্যাঁ, পরীক্ষার হলে তোমাকে একটি C++ ফাইল (যেমন main.cpp) লিখলেই হবে। ওই একটা কোডের ভেতরেই সব কাজ হবে।
+
+কোডটি মূলত ৩টি ভাগে কাজ করে (কিন্তু সব এক সাথেই থাকে):
+
+ইনপুট পার্ট: প্রথমে তুমি লিখবে Matrix A এবং Matrix B এর মান নেওয়ার কোড।
+
+প্রসেসিং পার্ট: মাঝখানে সেই ৩টি লুপ (i, j, k) দিয়ে গুণের সূত্রটা লিখবে।
+
+আউটপুট পার্ট: শেষে Result ম্যাট্রিক্সটা প্রিন্ট করবে।
+
+৩. সম্পূর্ণ কোডটি একসাথে (পরীক্ষায় যা লিখতে হবে)
+আগের কোডটাই এখানে আরও ছোট এবং পরিষ্কার করে দিচ্ছি, যাতে এক নজরে বুঝতে পারো এটা "একটা কোড":
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    // --- পার্ট ১: ১ম ম্যাট্রিক্স (A) এর ইনপুট ---
+    int r1, c1;
+    cout << "Matrix A (Row Col): "; 
+    cin >> r1 >> c1;
+    
+    // A ম্যাট্রিক্স তৈরি
+    vector<vector<int>> A(r1, vector<int>(c1));
+    cout << "Enter Matrix A values:\n";
+    for(int i=0; i<r1; i++) {
+        for(int j=0; j<c1; j++) cin >> A[i][j];
+    }
+
+    // --- পার্ট ২: ২য় ম্যাট্রিক্স (B) এর ইনপুট ---
+    int r2, c2;
+    cout << "Matrix B (Row Col): "; 
+    cin >> r2 >> c2;
+    
+    // B ম্যাট্রিক্স তৈরি
+    vector<vector<int>> B(r2, vector<int>(c2));
+    cout << "Enter Matrix B values:\n";
+    for(int i=0; i<r2; i++) {
+        for(int j=0; j<c2; j++) cin >> B[i][j];
+    }
+
+    // --- পার্ট ৩: গুণ করা (Logic) ---
+    if(c1 != r2) {
+        cout << "Gun kora shombhob na! (A er col != B er row)";
+        return 0;
+    }
+
+    // রেজাল্ট ম্যাট্রিক্স (r1 x c2 সাইজের)
+    vector<vector<int>> Result(r1, vector<int>(c2, 0));
+
+    // মেইন গুণের কাজ
+    for(int i=0; i<r1; i++) {
+        for(int j=0; j<c2; j++) {
+            for(int k=0; k<c1; k++) {
+                Result[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+
+    // --- পার্ট ৪: রেজাল্ট দেখানো ---
+    cout << "Result Matrix:\n";
+    for(int i=0; i<r1; i++) {
+        for(int j=0; j<c2; j++) {
+            cout << Result[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
