@@ -1,0 +1,103 @@
+১. 1D Vector
+
+ Add 
+
+push_back(value): এটা লিস্টের একদম শেষে নতুন সংখ্যা বসিয়ে দেয়।
+
+insert(): এটা নির্দিষ্ট কোনো জায়গায় সংখ্যা বসায় (একটু অ্যাডভান্সড)।
+
+ Remove/Delete (বাদ) দিবেন?
+
+pop_back(): এটা লিস্টের একদম শেষের সংখ্যাটা ডিলিট করে দেয়।
+
+erase(): এটা নির্দিষ্ট কোনো পজিশনের সংখ্যা ডিলিট করে।
+
+clear(): এটা পুরো ভেক্টর খালি করে দেয়।
+
+
+vector<int> v = {10, 20, 30};
+
+// Add kora (Last e)
+v.push_back(40); // v ekhon {10, 20, 30, 40}
+
+// Remove kora (Last theke)
+v.pop_back();    // 40 bad chole jabe. v ekhon {10, 20, 30}
+
+// Specific element bad dewa (Example: 1st index er element '20' bad dibo)
+v.erase(v.begin() + 1); // v ekhon {10, 30}
+
+
+২. 2D Vector
+
+ Add (যোগ) করবেন?
+
+পুরো একটা Row যোগ করা: vec.push_back({1, 2, 3})।
+
+নির্দিষ্ট Row-তে একটা সংখ্যা যোগ করা: vec[rowIndex].push_back(value)।
+
+ Remove (বাদ) দিবেন?
+
+পুরো একটা Row বাদ দেওয়া: vec.pop_back() (শেষের পুরো লাইন ডিলিট হবে)।
+নির্দিষ্ট Row থেকে একটা সংখ্যা বাদ দেওয়া: vec[rowIndex].pop_back() (ওই লাইনের শেষের সংখ্যা ডিলিট হবে)।
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    // --- PART 1: 1D Vector ---
+    cout << "--- 1D Vector Operations ---" << endl;
+    vector<int> vec1 = {10, 20, 30};
+
+    // Add kora
+    vec1.push_back(40); // 40 add hol
+    
+    // Remove kora (Last element)
+    vec1.pop_back(); // 40 bad gelo
+    
+    // Remove specific element (Index 0 ba prothom ta bad dibo)
+    vec1.erase(vec1.begin() + 0); // 10 bad gelo, ekhon ache {20, 30}
+
+    // Print 1D
+    for(int x : vec1) cout << x << " ";
+    cout << endl << endl;
+
+
+    // --- PART 2: 2D Vector ---
+    cout << "--- 2D Vector Operations ---" << endl;
+    vector<vector<int>> vec2 = {
+        {1, 2, 3},
+        {4, 5, 6}
+    };
+
+    // Case A: Specific ROW te element ADD kora
+    // Index 0 (Prothom row) te 99 add korbo
+    vec2[0].push_back(99); 
+    // Row 0 ekhon: {1, 2, 3, 99}
+
+    // Case B: Specific ROW theke element BAD dewa
+    // Index 1 (Ditiyo row) er last element (6) bad dibo
+    vec2[1].pop_back(); 
+    // Row 1 ekhon: {4, 5}
+
+    // Case C: Puro ekta notun ROW add kora
+    vec2.push_back({7, 8, 9}); 
+
+    // Case D: Puro ekta ROW bad dewa (Last row)
+    vec2.pop_back(); // {7, 8, 9} pura row ta bad chole jabe
+
+    // Display 2D Vector
+    for (int i = 0; i < vec2.size(); i++) {
+        cout << "Row " << i << " -> ";
+        for (int j = 0; j < vec2[i].size(); j++) {
+            cout << vec2[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+
+
+
+নির্দিষ্ট Row থেকে একটা সংখ্যা বাদ দেওয়া: vec[rowIndex].pop_back() (ওই লাইনের শেষের সংখ্যা ডিলিট হবে)।
